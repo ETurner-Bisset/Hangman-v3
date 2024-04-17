@@ -115,7 +115,7 @@ const getRandomWord = async () => {
 };
 
 let selectedWord = await getRandomWord();
-console.log(selectedWord);
+// console.log(selectedWord);
 
 let correctLetters = [];
 let wrongLetters = [];
@@ -132,9 +132,6 @@ let gameEnd = false;
 
 // Display word
 const displayWord = async (selectedWord) => {
-  // playBtn.style.display = 'none';
-  // wordContainer.style.display = 'flex';
-  console.log(selectedWord);
   wordContainer.innerHTML = `${selectedWord
     .split('')
     .map(
