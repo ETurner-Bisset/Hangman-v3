@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png")
+    link(rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png")
+    link(rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png")
+    link(rel="manifest" href="/img/site.webmanifest")
+    link(rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5")
+    link(rel="shortcut icon" href="/img/favicon.ico")
+    meta(name="msapplication-TileColor" content="#00aba9")
+    meta(name="msapplication-config" content="/img/browserconfig.xml")
+    meta(name="theme-color" content="#ffffff")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer")
+    script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+    title Hangman 
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="manifest", href="manifest.json" crossorigin='use-credentials')
+  body 
+    .backdrop
+    header.header#header
+      h1.header__title Hangman 
+        img(src='/img/favicon-32x32.png', alt='Hangmans noose')
+    main.error
+      p.error-text Sorry there was an error loading this page, maybe you are offline. Please check your connection or try again later. 
+    .modal 
+      h3.modal__title About   
+        button.modal__close(title='Close')
+          i.fa-solid.fa-times
+      p.modal__text This is a simple hangman game. Using a combination of local storage and mongoDB, it has the ability to track and register your high score. The words are supplied by:  
+        a(href='https://random-word-api.herokuapp.com/home' target='_blank') RandomWordAPI. 
+      p.modal__text You can find the code for this site here: 
+      a.modal__link(href='https://github.com/ETurner-Bisset/Whats-My_Weather-v1' target='_blank') GitHub Repo
+      p.modal__text For details on my other projects and more visit my site:
+      a.modal__link(href='https://eturner-bisset.github.io/My-Site-v2/index.html' target='_blank') Eleanor Turner-Bisset    
+    footer.footer#footer
+      //- button.install#install Get App 
+      p.footer__text= `ETB Copyright ©️ ${date}`
+        //- button.footer__btn(title='About') 
+        //-   i.fa-solid.fa-circle-info
+    script(type="module", src="/js/index.js") 

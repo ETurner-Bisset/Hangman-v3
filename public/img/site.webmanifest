@@ -1,0 +1,39 @@
+{
+  "name": "Hangman",
+  "short_name": "Hangman",
+  "icons": [
+    {
+      "src": "/img/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#e0b1ef",
+  "theme_color": "#b51ef0",
+  "description": "A simple Hangman game.",
+  "dir": "ltr",
+  "lang": "en-US",
+  "screenshots": [
+    {
+      "src": "/img/Hangman-mobile.png",
+      "type": "image/png",
+      "sizes": "750x1300",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/img/Hangman-desktop.png",
+      "type": "image/png",
+      "sizes": "1000x825",
+      "form_factor": "wide"
+    }
+  ]
+}

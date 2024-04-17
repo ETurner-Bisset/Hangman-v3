@@ -1,0 +1,82 @@
+.high-score-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  height: 100vh;
+  width: 80%;
+  max-width: 20rem;
+  min-width: 18.5rem;
+  transform: translateX(-100%);
+  @include defaultTransition(transform);
+  background-color: map-get($colors, background);
+  font-size: $font-size;
+  @include borderDefault(border-right);
+  @supports (display: grid) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 2rem 0.1rem 1.5rem 1.3rem;
+    grid-auto-rows: 1.3rem;
+    row-gap: 0.45rem;
+    grid-template-areas:
+      'title title title'
+      'line line line'
+      'blank labelN labelS'
+      'rank name score';
+    justify-items: center;
+    @media (min-width: 25rem) {
+      row-gap: 0.2rem;
+    }
+    .high-score-container__title {
+      grid-area: title;
+      text-align: center;
+      width: 100%;
+      position: relative;
+      align-self: center;
+      margin-top: 0.3rem;
+      .high-score-container__btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background-color: transparent;
+        @include borderDefault(border);
+        border-radius: 3px;
+        cursor: pointer;
+        transition: transform 0.7s ease-in forwards;
+        color: map-get($colors, text);
+        @include hoverFunc2();
+        @include hoverFunc(border-color, main);
+        @include hoverFunc(color, main);
+        padding: 0.2rem;
+        i {
+          font-size: $font-size;
+        }
+      }
+    }
+    .underline {
+      @include borderDefault(border-bottom);
+      width: 70%;
+      grid-area: line;
+    }
+    .blank {
+      grid-area: blank;
+    }
+    .high-score-container__labelN {
+      grid-area: labelN;
+      font-weight: bold;
+    }
+    .high-score-container__labelS {
+      grid-area: labelS;
+      font-weight: bold;
+    }
+    .rank {
+      grid-area: rank;
+    }
+    .name {
+      grid-area: name;
+    }
+    .score {
+      grid-area: score;
+    }
+  }
+}

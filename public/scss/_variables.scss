@@ -1,0 +1,45 @@
+$colors: (
+  main: #b51ef0,
+  background: #e0b1ef,
+  text: #1f0f0e,
+);
+
+$font-size: 1.2rem;
+
+@mixin display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin defaultBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  @include hoverFunc2();
+  i {
+    font-size: $font-size;
+    color: map-get($colors, text);
+    @include hoverFunc(color, background);
+  }
+}
+
+@mixin hoverFunc($property, $color) {
+  &:hover {
+    #{$property}: map-get($colors, $color);
+  }
+}
+@mixin hoverFunc2 {
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+@mixin borderDefault($property) {
+  #{$property}: 3px solid map-get($colors, text);
+}
+
+@mixin defaultTransition($name) {
+  transition: $name 0.7s ease-out;
+}

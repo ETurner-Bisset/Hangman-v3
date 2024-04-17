@@ -1,0 +1,248 @@
+@import '_variables.scss';
+
+@import 'highScores.scss';
+
+@import 'notification.scss';
+
+@import 'keyboard.scss';
+
+@import 'about.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto Slab', sans-serif;
+  overflow-x: hidden;
+  background-color: map-get($colors, background);
+  @include display-flex();
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  .backdrop {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    transition: visibility 0.7s 0s ease-out, opacity 0.7s 0s ease-out;
+  }
+  .show-backdrop {
+    visibility: visible;
+    opacity: 1;
+  }
+  .header {
+    background-color: map-get($colors, main);
+    color: map-get($colors, text);
+    width: 100%;
+    @include borderDefault(border-bottom);
+    @include display-flex();
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: $font-size;
+    .header__btn {
+      position: fixed;
+      top: 0.7rem;
+      left: 1rem;
+      background-color: transparent;
+      cursor: pointer;
+      @include hoverFunc2();
+      i {
+        font-size: 1.7rem;
+        color: map-get($colors, text);
+      }
+    }
+    .header__title {
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+        object-position: 0 0.2rem;
+      }
+    }
+  }
+  .main {
+    background-color: map-get($colors, background);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .main__container {
+      margin: 0.5rem auto 0;
+      max-width: 29rem;
+      min-width: 20rem;
+      padding: 0.5rem;
+      @include defaultTransition(height);
+      @supports (display: grid) {
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 3rem 10rem 6rem minmax(auto, 5rem);
+        grid-template-areas: 'text text' 'figure score' 'figure wrong' 'word word';
+        justify-items: center;
+      }
+      .main__container-text {
+        grid-area: text;
+        .here {
+          font-size: $font-size;
+          padding: 0.2rem;
+          cursor: pointer;
+          background-color: map-get($colors, text);
+          color: map-get($colors, main);
+          border: 1px solid map-get($colors, main);
+          border-radius: 3px;
+          @include hoverFunc(color, background);
+        }
+      }
+      .main__figure-container {
+        grid-area: figure;
+        height: 15.6rem;
+        width: 12.5rem;
+        fill: transparent;
+        stroke: map-get($colors, text);
+        stroke-width: 4px;
+        stroke-linecap: round;
+        .figure-part {
+          display: none;
+        }
+      }
+      .main__container-score {
+        grid-area: score;
+        p {
+          margin: 0.5rem 0;
+          @include display-flex();
+          flex-direction: column;
+          align-items: center;
+          font-weight: bold;
+          @media (min-width: 25rem) {
+            flex-direction: row;
+            span {
+              margin-left: 0.5rem;
+            }
+          }
+          span {
+            margin-top: 0.4rem;
+            background-color: map-get($colors, main);
+            border-radius: 10px;
+            color: map-get($colors, background);
+            padding: 0.3rem;
+            @include borderDefault(border);
+          }
+        }
+      }
+      .main__container-wrong {
+        grid-area: wrong;
+        margin-top: 0.5rem;
+        .main__container-wrong-title {
+          text-align: center;
+          font-weight: bold;
+        }
+        .wrong-letters {
+          @include display-flex();
+          width: fit-content;
+          flex-wrap: wrap;
+          .letter {
+            color: red;
+            display: inline-flex;
+            font-size: 1.6rem;
+            align-items: center;
+            justify-content: center;
+            margin: 0 3px;
+            height: 2rem;
+            width: 1.4rem;
+          }
+        }
+      }
+      .main__container-word {
+        grid-area: word;
+        @include display-flex();
+        justify-content: center;
+        width: fit-content;
+        flex-wrap: wrap;
+        .letter {
+          @include borderDefault(border-bottom);
+          display: inline-flex;
+          font-size: 1.6rem;
+          align-items: center;
+          justify-content: center;
+          margin: 0 3px;
+          height: 2rem;
+          width: 1.4rem;
+        }
+      }
+      @media (min-width: 25rem) {
+        grid-template-rows: 3rem 8rem 7rem minmax(auto, 5rem);
+      }
+    }
+  }
+  .popup-container {
+    position: fixed;
+    bottom: 50%;
+    background-color: map-get($colors, text);
+    color: map-get($colors, background);
+    text-align: center;
+    padding: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+  }
+
+  .open {
+    transform: translateX(0);
+  }
+
+  .show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .footer {
+    padding: 0.2rem;
+    background-color: map-get($colors, main);
+    color: map-get($colors, text);
+    width: 100%;
+    @include display-flex();
+    align-items: center;
+    justify-content: center;
+    @include borderDefault(border-top);
+    .install {
+      display: none;
+      margin-right: 0.7rem;
+      background-color: transparent;
+      padding: 0.2rem;
+      cursor: pointer;
+      border: 1px solid map-get($colors, text);
+      border-radius: 3px;
+      font-size: $font-size;
+      color: map-get($colors, text);
+      @include hoverFunc2();
+    }
+    .footer__text {
+      font-size: $font-size;
+      .footer__btn {
+        margin-left: 0.5rem;
+        @include defaultBtn();
+      }
+    }
+  }
+  .error {
+    .error-text {
+      max-width: 29rem;
+      padding: 0.4rem;
+      text-align: center;
+    }
+  }
+}

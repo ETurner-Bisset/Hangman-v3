@@ -1,0 +1,66 @@
+.notification-container {
+  position: fixed;
+  top: 10%;
+  width: 80%;
+  max-width: 25rem;
+  height: 80%;
+  z-index: 200;
+  background-color: map-get($colors, text);
+  color: map-get($colors, background);
+  border-radius: 3px;
+  border: 4px solid map-get($colors, main);
+  padding: 0.4rem;
+  opacity: 0;
+  transform: translateY(200%);
+  @include defaultTransition(all);
+  @include display-flex();
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: $font-size;
+  h4 {
+    font-size: 1.5rem;
+  }
+  p {
+    margin: 0.4rem 0;
+  }
+  button {
+    background-color: transparent;
+    border: 2px solid map-get($colors, main);
+    border-radius: 3px;
+    font-size: $font-size;
+    transition: transform 0.7s ease-in forwards;
+    color: map-get($colors, main);
+    cursor: pointer;
+    padding: 0.2rem;
+    @include hoverFunc2();
+  }
+  .warning {
+    font-style: italic;
+  }
+  form {
+    width: 100%;
+    @supports (display: grid) {
+      display: grid;
+      grid-template-columns: 30% 65%;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-areas: 'label input' 'btn btn';
+      row-gap: 0.4rem;
+      label {
+        grid-area: label;
+      }
+      input[type='text'] {
+        grid-area: input;
+        padding: 0.1rem 0.2rem;
+        font-size: 1rem;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+      button {
+        grid-area: btn;
+        justify-self: center;
+      }
+    }
+  }
+}
