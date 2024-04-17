@@ -63,22 +63,6 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   console.log('[service worker] fetching something...', event);
-  // event.respondWith(
-  //   (async () => {
-  //     const cachedResponse = await caches.match(event.request);
-  //     if (cachedResponse) {
-  //       return cachedResponse;
-  //     }
-
-  //     const response = await fetch(event.request);
-
-  //     if (!response || response.status !== 200 || response.type !== 'basic') {
-  //       return response;
-  //     }
-
-  //     return response;
-  //   })()
-  // );
   event.respondWith(
     caches
       .match(event.request)
@@ -97,17 +81,3 @@ self.addEventListener('fetch', (event) => {
       })
   );
 });
-
-// self.addEventListener('install', function (event) {
-//   console.log('[Service Worker] Installing Service Worker ...', event);
-// });
-
-// self.addEventListener('activate', function (event) {
-//   console.log('[Service Worker] Activating Service Worker ...', event);
-//   return self.clients.claim();
-// });
-
-// self.addEventListener('fetch', function (event) {
-//   console.log('[Service Worker] Fetching something ....', event);
-//   event.respondWith(fetch(event.request));
-// });
